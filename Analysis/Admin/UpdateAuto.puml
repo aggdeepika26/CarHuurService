@@ -1,0 +1,29 @@
+@startuml
+
+start
+   : Admin Provides update Auto Method;
+   : update info for Auto AutoNo/Brand/Color/ModelYear/Description;
+if (AutoNo Already present) then (yes)
+    :Error Message(Auto already present);
+    end;
+else (No)
+    :update Auto in list;
+    end;
+endif
+
+@enduml
+
+@startuml
+Admin --> CarRentalApp : Update Car
+CarRentalApp--> AdminController : updateCar(@PathVariable Long id)
+AdminController --> AdminService : updateCar(Long id, CarDto carDto)
+AdminService --> CarRepository : findById(id)
+alt car present
+AdminService <-- CarRepository : gets Existing car info
+AdminService --> AdminService : set new info in existing car
+AdminService --> CarRepository : CarRepository.save(existingCar)
+else car not present with given id
+AdminService <-- CarRepository : return false
+AdminController <-- AdminService : return false
+Admin <-- AdminController : Error Message Not found
+@enduml

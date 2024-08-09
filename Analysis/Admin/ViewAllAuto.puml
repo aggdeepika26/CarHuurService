@@ -1,0 +1,24 @@
+@startuml
+
+start
+   : Admin Provides ViewAllAuto Method;
+
+   :Show all the autos;
+   end;
+
+@enduml
+
+
+
+
+@startuml
+Admin --> CarRentalApp : View All autos
+CarRentalApp--> AdminController : getAllCars()
+AdminController --> AdminService : getAllCars()
+AdminService --> CarRepository : findAllCar()
+
+AdminService <-- CarRepository : return List<CarDto)
+AdminController <-- AdminService : return List<CarDto)
+Admin <-- AdminController : List of cars
+
+@enduml

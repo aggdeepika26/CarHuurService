@@ -1,0 +1,23 @@
+@startuml
+
+start
+   : Admin Provides Delete Auto Method;
+   : Get AutoNo to delete;
+if (AutoNo present) then (yes)
+    :Delete Auto info;
+    end;
+else (No)
+    :Error Message(Auto does not exist);
+    end;
+endif
+
+@enduml
+
+
+
+@startuml
+Admin --> CarRentalApp : delete auto
+CarRentalApp--> AdminController : deleteCar(@PathVariable Long id)
+AdminController --> AdminService : deleteCar(Long id)
+AdminService --> CarRepository : deleteCarById(Long id)
+@enduml

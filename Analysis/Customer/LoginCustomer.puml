@@ -1,0 +1,21 @@
+@startuml
+
+start
+   : After registeration with RentalCarService customer can login to rent an auto;
+   : Customer Provide info
+     EmailId
+     Password  ;
+   : Click Login;
+
+if (EmailId  Not present) then (yes)
+    :Error Message(Email Not found );
+    end;
+else (No)
+    :Diverted to customer's Dashboard;
+    end;
+endif
+
+@enduml
+
+
+

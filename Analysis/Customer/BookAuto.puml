@@ -1,0 +1,31 @@
+@startuml
+
+start
+   : Customer can rent an auto;
+   : Customer search for desired auto;
+
+if (Auto present) then (yes)
+    :click bookAuto;
+    :Customer can check the availability of the auto on specified dates;
+    :Make payment;
+    :click submit;
+    if (payment done) then (yes)
+    :gets info of payment and booked auto with pending/approved status
+    :admin gets request to approve ;
+    if(payment recd) then (yes)
+    :admin approves request;
+    :Customer can see updated status of approved request;
+    else(no)
+    end;
+    endif;
+    end;
+    else(no)
+    endif;
+    end;
+else (No)
+    : No Auto found;
+endif;
+end;
+@enduml
+
+

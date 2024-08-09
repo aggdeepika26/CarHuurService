@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+
+rectangle Use-CasesCarRentalService{
+(Admin Registration Login) as adminRegistrationLogin #83d3f6
+(Get Auto Info) as info  #83d3f6
+(Add Auto) as addAuto #83d3f6
+(Update Auto Info) as updateAuto #83d3f6
+(Delete Auto) as deleteAuto #83d3f6
+(Search Auto ) as searchAuto #83d3f6
+(Approve/Reject Auto Rent Request) as updateRejectRequest  #83d3f6
+(View All Auto) as viewAuto  #83d3f6
+(view all booked auto) as viewBookedAuto #83d3f6
+(Feedback received ) as recdFeedback  #83d3f6
+
+(Registration Customer) as registrationCustomer   #83d3f6
+(Login as Customer) as customerLogin   #83d3f6
+(View all booked auto on Dashboard) as viewMyBookedAuto  #83d3f6
+(View All Auto) as viewAuto   #83d3f6
+(Book Auto) as bookAuto  #83d3f6
+(Update Booking) as updateBookingInfo    #83d3f6
+
+(Search Auto ) as searchAuto   #83d3f6
+(Track Booking Status) as trackBooking #83d3f6
+(Giving Feedback) as giveFeedback #83d3f6
+
+Admin --> adminRegistrationLogin
+Admin --> info
+Admin --> addAuto
+Admin --> updateAuto
+Admin --> deleteAuto
+Admin --> searchAuto
+Admin --> updateRejectRequest
+Admin --> viewAuto
+Admin --> viewBookedAuto
+Admin --> recdFeedback
+
+Customer --> registrationCustomer
+Customer --> customerLogin
+Customer -->  viewMyBookedAuto
+Customer --> viewAuto
+Customer --> bookAuto
+Customer --> updateBookingInfo
+Customer --> searchAuto
+Customer --> trackBooking
+Customer --> giveFeedback
+@enduml

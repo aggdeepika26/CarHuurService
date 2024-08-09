@@ -1,0 +1,54 @@
+@startuml
+
+start
+   : Admin Provides search Auto Method;
+   : He can search either by AutoNo/Brand/Color/ModelYear;
+if (Admin provide AutoNo) then (yes);
+  if (AutoNo present) then (yes)
+    :Show detail of car with picture;
+    end;
+    else (No)
+    :Error Message(No Auto Found with given no);
+    end;
+
+   endif
+elseif (Admin provide Brand) then (yes)
+  if (Brand present) then (yes)
+    :Show detail of car with picture;
+    end;
+    else (No)
+    :Error Message(No Auto Found with given Brand);
+    end;
+   endif
+
+elseif (Admin provide Color) then (yes)
+  if (Color present) then (yes)
+    :Show detail of car with picture;
+    end;
+    else (No)
+    :Error Message(No Auto Found with given Color);
+    end;
+   endif
+else (no)
+: Error Msg. Enter some info to search your desired auto;
+end;
+@enduml
+
+
+
+
+@startuml
+Admin --> CarRentalApp : search Car
+CarRentalApp--> AdminController : getCarById(@PathVariable Long id)
+AdminController --> AdminService : getCarById(Long id)
+AdminService --> CarRepository : carRepository.getCarById(id)
+alt if car present with given id
+AdminService <-- CarRepository : return Car info
+AdminController <-- AdminService : return Car info
+Admin <-- AdminController : car info
+else car not present with given id
+
+AdminService <-- CarRepository : return false
+AdminController <-- AdminService : return false
+Admin <-- AdminController : Error Message Not found
+@enduml

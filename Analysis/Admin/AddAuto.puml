@@ -1,0 +1,44 @@
+@startuml
+
+start
+   : Admin Provides Add Auto Method;
+   : Enter info for Auto AutoNo/Brand/Color/ModelYear/Description;
+
+if (AutoNo Already present) then (yes)
+    :Error Message(Auto already present);
+    end;
+else (No)
+    :Add Auto in list;
+    end;
+endif
+
+@enduml
+
+
+@startuml
+
+
+
+
+Admin --> CarRentalApp : input Car info
+
+
+CarRentalApp--> AdminController : postCar(@ModelAttribute CarDto ,carDto)
+AdminController --> AdminService : postCar(CarDto carDto)
+AdminService --> CarRepository : findByCarId(Long id)
+
+alt New Car already exist in the list
+
+AdminService <-- CarRepository : return false
+AdminController <-- AdminService :return false
+Admin <-- AdminController : Error message Car already exist with this no.
+
+else Add new car info
+AdminService --> CarRepository : carRepository.save(NewCar)
+AdminService <-- CarRepository : return true
+AdminController <-- AdminService : return true
+Admin <-- AdminController : New car created
+
+
+end
+@enduml

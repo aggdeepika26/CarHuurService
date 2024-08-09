@@ -1,0 +1,41 @@
+@startuml
+
+start
+   : Customer can register with RentalCarService to rent an auto;
+   : Customer Provide info
+     First Name
+     Last Name
+     EmailId
+     Password
+     Confirm Password;
+   : Click Register;
+
+if (EmailId Already present) then (yes)
+    :Error Message(Email already exist );
+    end;
+else (No)
+    :Registered successfully;
+    end;
+endif
+
+@enduml
+
+
+
+@startuml
+Customer --> CarRentalApp : new customer creation provide info
+CarRentalApp--> authController : createCustomer(@RequestBody SignUpRequest signUpRequest)
+authController --> authService : hasCustomerWithEmail(signUpRequest.getEmail())
+authService --> userRepository : userRepository.findFirstByEmail
+alt already present with given emailid
+authService <-- userRepository : return false
+authController <-- authService : return false
+Customer <-- authController : Email already exist
+else Add New Customer
+authController --> authService : authService.createCustomer(signUpRequest)
+authService  --> userRepository : userRepository.save(user)
+authService <-- userRepository : return true
+authController <-- authService : return true
+Customer <-- authController : customer created
+
+@enduml

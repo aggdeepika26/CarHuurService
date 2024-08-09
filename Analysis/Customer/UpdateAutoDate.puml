@@ -1,0 +1,16 @@
+@startuml
+
+start
+   : Customer Provides update date for renting Auto Method;
+   : click on update date button;
+if ((previous selected date's time - today's date's time)>=48 hours) then (yes)
+    :select another date;
+    :click submit;
+    :customer can view updated info;
+    end;
+else (No)
+    :Error message sorry you can edit only before 48 hours;
+    end;
+endif
+
+@enduml

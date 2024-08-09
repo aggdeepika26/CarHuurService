@@ -1,0 +1,13 @@
+@startuml
+
+start
+   : Admin provides approve/reject request for AutoRental Method;
+   : admin gets approve/reject request;
+if (Admin gets payment) then (yes);
+
+    :set request approved;
+    end;
+    else (No)
+     :set request rejected;
+    end;
+@enduml
